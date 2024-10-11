@@ -13,8 +13,7 @@ public class match {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID matchId;
     private Date date;
-    @ManyToOne()
-    List<location> locationPoint;
+
 
 
     public UUID getMatchId() {
