@@ -1,0 +1,6 @@
+CREATE TABLE Team (
+    TeamID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    UserId INT,
+    TeamName VARCHAR(255),
+    FOREIGN KEY (UserId) REFERENCES User(UserId)
+);

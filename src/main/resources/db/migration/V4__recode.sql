@@ -1,0 +1,7 @@
+CREATE TABLE Recode (
+    recodeId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    UserId INT,
+    HitCount INT DEFAULT 0,
+    TotalShots INT DEFAULT 0,
+    FOREIGN KEY (UserId) REFERENCES User(UserId)
+);
