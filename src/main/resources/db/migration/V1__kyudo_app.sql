@@ -1,0 +1,56 @@
+CREATE TABLE Place (
+    PlaceId INT(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    PlaceName VARCHAR(255),
+    Address VARCHAR(255)
+);
+
+CREATE TABLE BelongingGroup (
+    GroupId INT(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE User (
+    UserId INT(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(10),
+    MailAddress VARCHAR(30),
+    CreateAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    LoreId INT(10),
+    GroupId INT(10),
+    FOREIGN KEY (GroupId) REFERENCES BelongingGroup(GroupId)
+);
+
+CREATE TABLE GameMatch (
+    MatchId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    MatchDate DATE,
+    PlaceId INT,
+    UserId INT,
+    FOREIGN KEY (PlaceId) REFERENCES Place(PlaceId)
+);
+
+CREATE TABLE GameMatch_User (
+    MatchId INT NOT NULL,
+    UserId INT NOT NULL,
+    FOREIGN KEY (MatchId) REFERENCES GameMatch(MatchId),
+    FOREIGN KEY (UserId) REFERENCES User(UserId)
+);
+
+CREATE TABLE Recode (
+    recodeId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    UserId INT,
+    HitCount INT DEFAULT 0,
+    TotalShots INT DEFAULT 0,
+    CreateAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (UserId) REFERENCES User(UserId)
+);
+
+CREATE TABLE Team (
+    TeamId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    TeamName VARCHAR(10)
+);
+
+CREATE TABLE Team_User(
+    UserId INT NOT NULL,
+    TeamId INT NOT NULL,
+    FOREIGN KEY (UserId) REFERENCES User(UserId),
+    FOREIGN KEY (TeamId) REFERENCES Team(TeamId)
+);
