@@ -1,7 +1,0 @@
-CREATE TABLE Please (
-    PleaseId INT(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    PleaseName VARCHAR(255),
-    Address VARCHAR(255)
-);
-
-
