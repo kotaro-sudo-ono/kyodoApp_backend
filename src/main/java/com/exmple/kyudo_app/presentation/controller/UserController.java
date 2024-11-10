@@ -1,4 +1,4 @@
-package com.exmple.kyudo_app;
+package com.exmple.kyudo_app.presentation.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

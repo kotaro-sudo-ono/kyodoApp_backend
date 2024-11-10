@@ -1,4 +1,4 @@
-package com.exmple.kyudo_app.model;
+package com.exmple.kyudo_app.domain.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -7,13 +7,10 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-@Table(name="Team")
-
-public class Team {
+@Table(name="BelongingGroup")
+public class BelongingGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long teamId;
-    private String teamName;
-
-
+    private Long groupId;
+    private String groupName;
 }
