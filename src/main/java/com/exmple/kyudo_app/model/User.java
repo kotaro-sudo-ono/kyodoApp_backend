@@ -29,4 +29,7 @@ public class User {
     @OneToMany
     @JoinColumn(name = "teamMemberId", referencedColumnName = "teamMemberId")
     private List<TeamMember> teamMembers;
+    @OneToOne
+    @JoinColumn(name = "groupId", referencedColumnName = "groupId")
+    private BelongingGroup belongingGroup;
 }
