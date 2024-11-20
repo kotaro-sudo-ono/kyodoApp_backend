@@ -1,56 +1,56 @@
-CREATE TABLE Place (
-    PlaceId INT(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    PlaceName VARCHAR(255),
-    Address VARCHAR(255)
+CREATE TABLE place (
+    place_id INT(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    place_name VARCHAR(255),
+    address VARCHAR(255)
 );
 
-CREATE TABLE BelongingGroup (
-    GroupId INT(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    Name VARCHAR(20) NOT NULL
+CREATE TABLE belonging_group (
+    group_id INT(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(20) NOT NULL
 );
 
-CREATE TABLE User (
-    UserId INT(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    Name VARCHAR(10),
-    MailAddress VARCHAR(30),
-    CreateAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    LoreId INT(10),
-    GroupId INT(10),
-    FOREIGN KEY (GroupId) REFERENCES BelongingGroup(GroupId)
+CREATE TABLE users (
+    user_id INT(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(10),
+    mail_address VARCHAR(30),
+    create_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    lore_id INT(10),
+    group_id INT(10) DEFAULT null,
+    FOREIGN KEY (group_id) REFERENCES belonging_group(group_id)
 );
 
-CREATE TABLE GameMatch (
-    MatchId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    MatchDate DATE,
-    PlaceId INT,
-    UserId INT,
-    FOREIGN KEY (PlaceId) REFERENCES Place(PlaceId)
+CREATE TABLE game_match (
+    match_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    match_date DATE,
+    place_id INT DEFAULT null,
+    FOREIGN KEY (place_id) REFERENCES place(place_id)
 );
 
-CREATE TABLE GameMatch_User (
-    MatchId INT NOT NULL,
-    UserId INT NOT NULL,
-    FOREIGN KEY (MatchId) REFERENCES GameMatch(MatchId),
-    FOREIGN KEY (UserId) REFERENCES User(UserId)
+CREATE TABLE game_match_user (
+    match_id INT NOT NULL,
+    user_id INT NOT NULL,
+    FOREIGN KEY (match_id) REFERENCES game_match(match_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
-CREATE TABLE Recode (
-    recodeId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    UserId INT,
-    HitCount INT DEFAULT 0,
-    TotalShots INT DEFAULT 0,
-    CreateAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (UserId) REFERENCES User(UserId)
+CREATE TABLE recode (
+    recode_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    hit_count INT DEFAULT 0,
+    total_shots INT DEFAULT 0,
+    create_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
-CREATE TABLE Team (
-    TeamId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    TeamName VARCHAR(10)
+CREATE TABLE team (
+    team_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    team_name VARCHAR(10)
 );
 
-CREATE TABLE Team_User(
-    UserId INT NOT NULL,
-    TeamId INT NOT NULL,
-    FOREIGN KEY (UserId) REFERENCES User(UserId),
-    FOREIGN KEY (TeamId) REFERENCES Team(TeamId)
+CREATE TABLE team_member(
+    team_member_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    team_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (team_id) REFERENCES team(team_id)
 );
