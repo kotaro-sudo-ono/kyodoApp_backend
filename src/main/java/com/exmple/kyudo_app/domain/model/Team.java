@@ -12,7 +12,9 @@ import lombok.Setter;
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name ="team_id")
     private Long teamId;
+    @Column(name ="team_name")
     private String teamName;
 
 

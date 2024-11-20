@@ -7,10 +7,12 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-@Table(name="BelongingGroup")
+@Table(name="belonging_group")
 public class BelongingGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "group_id")
     private Long groupId;
+    @Column(name = "name")
     private String groupName;
 }

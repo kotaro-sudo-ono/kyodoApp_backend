@@ -11,11 +11,14 @@ import lombok.Setter;
 public class Record {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name ="recode_id")
     private Long recodeId;
+    @Column(name ="hit_count")
     private  Integer hitCount;
+    @Column(name ="total_shots")
     private  Integer totalShots;
-    @OneToOne()
-    @JoinColumn(name = "userId", referencedColumnName = "userId")
+    @ManyToOne()
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User user;
 }
 

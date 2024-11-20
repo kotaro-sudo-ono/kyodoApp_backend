@@ -7,15 +7,16 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-@Table(name="TeamMember")
+@Table(name="team_member")
 public class TeamMember {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name= "team_member_id")
     private Long teamMemberId;
     @ManyToOne
-    @JoinColumn(name = "userId", referencedColumnName  = "userId")
+    @JoinColumn(name = "user_id", referencedColumnName  = "user_id")
     private User user;
     @OneToOne
-    @JoinColumn(name = "teamId", referencedColumnName = "teamId")
+    @JoinColumn(name = "team_id", referencedColumnName = "team_id")
     private Team team;
 }
