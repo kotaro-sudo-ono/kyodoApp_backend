@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/user")
 public class UserResistorController {
 
 private final UserRegisterService userRegisterService;
@@ -15,7 +15,7 @@ public UserResistorController(UserRegisterService userRegisterService){
     this.userRegisterService = userRegisterService;
 }
 
-    @GetMapping("/users")
+    @GetMapping("/user")
     public String getUsers() {
         return "ユーザー一覧";
     }
@@ -30,5 +30,7 @@ public UserResistorController(UserRegisterService userRegisterService){
         User user = userRegisterService.getUserById(id);
         return ResponseEntity.ok(user);
     }
+
+
 }
 

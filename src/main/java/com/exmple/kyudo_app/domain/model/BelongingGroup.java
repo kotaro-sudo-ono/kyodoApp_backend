@@ -14,5 +14,5 @@ public class BelongingGroup {
     @Column(name = "group_id")
     private Long groupId;
     @Column(name = "name")
-    private String groupName;
+    private String name;
 }
