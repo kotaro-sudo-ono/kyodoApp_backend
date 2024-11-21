@@ -38,4 +38,8 @@ public class User {
     @OneToOne
     @JoinColumn(name = "group_id", referencedColumnName = "group_id")
     private BelongingGroup belongingGroup;
+
+    public void setBelongingGroup(BelongingGroup belongingGroup) {
+        this.belongingGroup = belongingGroup;
+    }
 }
