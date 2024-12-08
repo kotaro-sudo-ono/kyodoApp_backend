@@ -11,8 +11,8 @@ CREATE TABLE belonging_group (
 
 CREATE TABLE users (
     user_id INT(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(10),
-    mail_address VARCHAR(30),
+    name VARCHAR(50) NOT NULL,
+    mail_address VARCHAR(30) NOT NULL,
     create_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     lore_id INT(10),
     group_id INT(10) DEFAULT null,
