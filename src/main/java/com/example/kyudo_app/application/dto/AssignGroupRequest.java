@@ -1,4 +1,4 @@
-package com.exmple.kyudo_app.application.dto;
+package com.example.kyudo_app.application.dto;
 
 import lombok.Getter;
 import lombok.Setter;

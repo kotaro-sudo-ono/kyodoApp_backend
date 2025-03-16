@@ -1,4 +1,4 @@
-package com.exmple.kyudo_app.domain.model;
+package com.example.kyudo_app.domain.model;
 
 
 import jakarta.persistence.*;

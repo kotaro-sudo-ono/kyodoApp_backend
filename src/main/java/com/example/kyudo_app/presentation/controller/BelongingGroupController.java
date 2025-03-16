@@ -1,9 +1,9 @@
-package com.exmple.kyudo_app.presentation.controller;
+package com.example.kyudo_app.presentation.controller;
 
-import com.exmple.kyudo_app.application.dto.AssignGroupRequest;
-import com.exmple.kyudo_app.domain.model.BelongingGroup;
-import com.exmple.kyudo_app.domain.service.AssignBelongingGroupService;
-import com.exmple.kyudo_app.domain.service.BelongingGroupResisterService;
+import com.example.kyudo_app.application.dto.AssignGroupRequest;
+import com.example.kyudo_app.domain.model.BelongingGroup;
+import com.example.kyudo_app.domain.service.AssignBelongingGroupService;
+import com.example.kyudo_app.domain.service.BelongingGroupResisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
