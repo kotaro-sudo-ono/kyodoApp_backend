@@ -1,12 +1,13 @@
-package com.exmple.kyudo_app.presentation.controller;
+package com.example.kyudo_app.presentation.controller;
 
-import com.exmple.kyudo_app.domain.model.User;
-import com.exmple.kyudo_app.domain.service.UserRegisterService;
+import com.example.kyudo_app.domain.model.User;
+import com.example.kyudo_app.domain.service.UserRegisterService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin(origins = "http://localhost:5173")
 public class UserResistorController {
 
 private final UserRegisterService userRegisterService;
@@ -16,6 +17,7 @@ public UserResistorController(UserRegisterService userRegisterService){
 }
 
     @GetMapping("/user")
+
     public String getUsers() {
         return "ユーザー一覧";
     }

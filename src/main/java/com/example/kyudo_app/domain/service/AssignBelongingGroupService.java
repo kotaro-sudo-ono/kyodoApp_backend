@@ -1,9 +1,9 @@
-package com.exmple.kyudo_app.domain.service;
+package com.example.kyudo_app.domain.service;
 
-import com.exmple.kyudo_app.domain.model.BelongingGroup;
-import com.exmple.kyudo_app.domain.model.User;
-import com.exmple.kyudo_app.infrastructure.external.AssignBelongingGroupRepository;
-import com.exmple.kyudo_app.infrastructure.external.UserRegisterRepository;
+import com.example.kyudo_app.domain.model.BelongingGroup;
+import com.example.kyudo_app.domain.model.User;
+import com.example.kyudo_app.infrastructure.external.AssignBelongingGroupRepository;
+import com.example.kyudo_app.infrastructure.external.UserRegisterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
