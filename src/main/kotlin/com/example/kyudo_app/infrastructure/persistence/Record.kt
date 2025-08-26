@@ -1,4 +1,4 @@
-package com.example.kyudo_app.domain.model
+package com.example.kyudo_app.infrastructure.persistence
 
 import jakarta.persistence.*
 import lombok.Getter
