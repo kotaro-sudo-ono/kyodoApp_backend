@@ -8,7 +8,7 @@ class User(
     val email: String,
     val userRole: Int,
     val gameMatches: List<GameMatch> = emptyList(),
-    val records: List<Record> = emptyList(),
+    val records: List<record> = emptyList(),
     val teamMembers: List<TeamMember> = emptyList(),
     val belongingGroup: BelongingGroup? = null
 ) {

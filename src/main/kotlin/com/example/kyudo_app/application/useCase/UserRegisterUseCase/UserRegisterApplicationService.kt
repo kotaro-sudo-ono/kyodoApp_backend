@@ -5,8 +5,7 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-class UserRegisterService(
-) : UserRegisterUseCase {
+class UserRegisterApplicationService: UserRegisterUseCase {
 
     @Transactional
     override fun register(request: UserRegisterParam): UserRegisterDto {

@@ -1,10 +1,9 @@
 package com.example.kyudo_app.application.useCase.UserGetAllUseCase
 
-import lombok.`val`
 import org.springframework.stereotype.Service
 
 @Service
-class UserGetAllService : UserGetAllUseCase {
+class UserGetAllApplicationService : UserGetAllUseCase {
 
     override fun getAllUsers(): List<UserGetAllDto> {
         return listOf(
