@@ -4,12 +4,12 @@ import jakarta.persistence.*
 
 @Entity
 @Table(name = "record")
+@EntityListeners(EntityListener::class)
 class RecordEntity(
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "record_id")
-    val id: Int? = null,
+    var id: String? = null,
 
     @Column(name = "hit_count")
     var hitCount: Int? = null,

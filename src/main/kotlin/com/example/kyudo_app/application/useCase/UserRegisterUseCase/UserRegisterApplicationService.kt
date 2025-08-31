@@ -11,7 +11,7 @@ class UserRegisterApplicationService: UserRegisterUseCase {
     override fun register(request: UserRegisterParam): UserRegisterDto {
         // ここでUserエンティティを作成するなどビジネスロジックを書く
         val user = User(
-            userId = 1,
+            userId = "1",
             name = request.name,
             email = request.email,
             userRole = 1

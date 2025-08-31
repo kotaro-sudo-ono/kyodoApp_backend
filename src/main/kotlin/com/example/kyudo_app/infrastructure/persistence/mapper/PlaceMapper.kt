@@ -17,8 +17,8 @@ object PlaceMapper {
 
     fun toDomain(entity: PlaceEntity): Place {
         return Place(
-            placeId = entity.id ?: 0,
-            placeName = entity.name ?: "",
+            placeId = entity.id,
+            placeName = entity.name,
             placePoint = entity.address ?: ""
         )
     }

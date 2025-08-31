@@ -4,12 +4,12 @@ import jakarta.persistence.*
 
 @Entity
 @Table(name = "place")
+@EntityListeners(EntityListener::class)
 class PlaceEntity(
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "place_id")
-    val id: Int? = null,
+    var id: String? = null,
 
     @Column(name = "place_name", nullable = false)
     var name: String,

@@ -5,12 +5,12 @@ import java.util.*
 
 @Entity
 @Table(name = "game_match")
+@EntityListeners(EntityListener::class)
 class GameMatchEntity(
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "match_id")
-    val id: Int? = null,
+    var id: String? = null,
 
     @Column(name = "match_date")
     var matchDate: Date? = null,

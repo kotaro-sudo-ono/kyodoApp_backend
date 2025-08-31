@@ -3,7 +3,7 @@ package com.example.kyudo_app.domain.model
 
 
 class User(
-    val userId: Int?,
+    val userId: String?,
     val name: String,
     val email: String,
     val userRole: Int,

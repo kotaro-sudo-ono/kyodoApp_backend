@@ -4,11 +4,11 @@ import jakarta.persistence.*
 
 @Entity
 @Table(name = "belonging_group")
+@EntityListeners(EntityListener::class)
 class BelongingGroupEntity(
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "group_id")
-    val id: Int? = null,
+    var id: String? = null,
 
     @Column(name = "name", nullable = false)
     val name: String,
