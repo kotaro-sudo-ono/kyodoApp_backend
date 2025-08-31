@@ -9,7 +9,7 @@ class TeamEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "team_id")
-    val id: Long? = null,
+    val id: Int? = null,
 
     @Column(name = "team_name", nullable = false)
     val name: String

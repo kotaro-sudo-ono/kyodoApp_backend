@@ -3,7 +3,7 @@ package com.example.kyudo_app.presentation.controller.UserQueryController.GetAll
 import com.example.kyudo_app.application.useCase.UserGetAllUseCase.UserGetAllDto
 
 data class UserGetAllResponse(
-    val id: Long,
+    val id: Int?,
     val name: String,
     val email: String
 ) {

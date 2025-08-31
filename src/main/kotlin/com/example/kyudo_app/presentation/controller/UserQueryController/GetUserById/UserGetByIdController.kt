@@ -16,7 +16,7 @@ class UserGetByIdController(
     private val userGetByIdUseCase: UserGetByIdUseCase
 ) {
     @GetMapping("/{id}")
-    fun getUserById(@PathVariable id: Long): ResponseEntity<GetUserByIdResponse> {
+    fun getUserById(@PathVariable id: Int?): ResponseEntity<GetUserByIdResponse> {
         val param = GetUserByIdParam(id)
         val dto = userGetByIdUseCase.getById(param)
 

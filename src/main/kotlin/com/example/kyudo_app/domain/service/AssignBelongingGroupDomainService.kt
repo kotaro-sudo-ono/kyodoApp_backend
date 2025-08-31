@@ -11,7 +11,7 @@ class AssignBelongingGroupDomainService(
     private val userRegisterRepository: UserRegisterRepository
 ) {
     // group_idを使ってBelongingGroupを取得し、関連するエンティティにセット
-    fun assignGroupToUserEntity(userId: Long, groupId: Long?) {
+    fun assignGroupToUserEntity(userId: Int?, groupId: Int?) {
 
         val user = userRegisterRepository.findByIdOrNull(userId)
             ?: throw IllegalArgumentException("Invalid user ID: $userId")

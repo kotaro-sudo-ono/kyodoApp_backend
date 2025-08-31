@@ -9,13 +9,13 @@ class TeamMemberEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "team_member_id")
-    val id: Long? = null,
+    val id: Int? = null,
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     var user: UserEntity? = null,
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "team_id", referencedColumnName = "team_id")
     var team: TeamEntity? = null
 )

@@ -8,8 +8,11 @@ class BelongingGroupEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "group_id")
-    val id: Long,
+    val id: Int? = null,
 
     @Column(name = "name", nullable = false)
-    val name: String
+    val name: String,
+
+    @OneToMany(mappedBy = "belongingGroup")
+    val users: MutableList<UserEntity> = mutableListOf()
 )

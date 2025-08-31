@@ -7,7 +7,7 @@ object TeamMemberMapper {
 
     fun toEntity(domain: TeamMember): TeamMemberEntity {
         return TeamMemberEntity(
-            id = if (domain.teamMemberId == 0L) null else domain.teamMemberId, // 新規なら null
+            id = domain.teamMemberId, // 新規なら null
             user = UserMapper.toEntity(domain.user),
             team = TeamMapper.toEntity(domain.team)
         )
@@ -15,7 +15,7 @@ object TeamMemberMapper {
 
     fun toDomain(entity: TeamMemberEntity): TeamMember {
         return TeamMember(
-            teamMemberId = entity.id ?: 0L,
+            teamMemberId = entity.id,
             user = UserMapper.toDomain(entity.user!!),   // null じゃない前提
             team = TeamMapper.toDomain(entity.team!!)   // null じゃない前提
         )

@@ -9,7 +9,7 @@ class UserEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    val id: Long? = null,
+    val id: Int? = null,
 
     @Column(name = "name", nullable = false)
     var name: String,
@@ -29,7 +29,7 @@ class UserEntity(
     @OneToMany(mappedBy = "user")
     val teamMembers: MutableList<TeamMemberEntity> = mutableListOf(),
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "group_id", referencedColumnName = "group_id")
     var belongingGroup: BelongingGroupEntity? = null
 )

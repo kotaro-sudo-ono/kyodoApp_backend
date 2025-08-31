@@ -4,5 +4,4 @@ import com.example.kyudo_app.infrastructure.persistence.entity.UserEntity
 import org.springframework.data.jpa.repository.JpaRepository
 
 
-interface UserRegisterRepository : JpaRepository<UserEntity?, Long?>
-
+interface UserRegisterRepository : JpaRepository<UserEntity?, Int?>

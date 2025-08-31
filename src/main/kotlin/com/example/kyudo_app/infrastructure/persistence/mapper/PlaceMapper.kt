@@ -6,13 +6,13 @@ import com.example.kyudo_app.infrastructure.persistence.entity.PlaceEntity
 object PlaceMapper {
 
     fun toEntity(domain: Place): PlaceEntity {
-        val entity = PlaceEntity()
-        entity.id = domain.placeId
-        entity.name = domain.placeName
-        entity.address = domain.placePoint
-        // GameMatches は空リストにしておく、必要なら追加でセット
-        entity.gameMatches = mutableListOf()
-        return entity
+        return PlaceEntity(
+            id = domain.placeId,
+            name = domain.placeName,
+            address = domain.placePoint,
+            // GameMatches は空リストにしておく、必要なら追加でセット
+            gameMatches = mutableListOf()
+        )
     }
 
     fun toDomain(entity: PlaceEntity): Place {

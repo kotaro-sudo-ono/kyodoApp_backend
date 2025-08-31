@@ -3,7 +3,7 @@ package com.example.kyudo_app.presentation.controller.UserQueryController.GetUse
 import com.example.kyudo_app.application.useCase.GetUserByIdUseCase.UserGetByIdDto
 
 class GetUserByIdResponse(
-    val userId: Long,
+    val userId: Int?,
     val name: String,
     val email: String
 ){

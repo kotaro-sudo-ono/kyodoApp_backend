@@ -3,7 +3,7 @@ package com.example.kyudo_app.application.useCase.UserRegisterUseCase
 import com.example.kyudo_app.domain.model.User
 
 data class UserRegisterDto(
-    val id: Long,
+    val id: Int?,
     val name: String,
     val email: String
 ){

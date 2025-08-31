@@ -21,7 +21,7 @@ object UserMapper {
 
     fun toDomain(entity: UserEntity): User {
         return User(
-            userId = entity.id ?: 0L, // Entity は nullable なので fallback
+            userId = entity.id, // Entity は nullable なので fallback
             name = entity.name,
             email = entity.email,
             userRole = entity.userRole ?: 0,

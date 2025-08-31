@@ -4,19 +4,19 @@ import jakarta.persistence.*
 
 @Entity
 @Table(name = "place")
-class PlaceEntity {
+class PlaceEntity(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "place_id")
-    var id: Int? = null
+    val id: Int? = null,
 
     @Column(name = "place_name", nullable = false)
-    var name: String? = null
+    var name: String,
 
     @Column(name = "address")
-    var address: String? = null
+    var address: String? = null,
 
     @OneToMany(mappedBy = "place")
-    var gameMatches: MutableList<GameMatchEntity> = mutableListOf()
-}
+    val gameMatches: MutableList<GameMatchEntity> = mutableListOf()
+)

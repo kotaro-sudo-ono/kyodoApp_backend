@@ -8,12 +8,12 @@ class UserGetAllApplicationService : UserGetAllUseCase {
     override fun getAllUsers(): List<UserGetAllDto> {
         return listOf(
             UserGetAllDto(
-                id = 1L,
+                id = 1,
                 name = "山田 太郎",
                 email = "taro@example.com"
             ),
             UserGetAllDto(
-                id = 2L,
+                id = 2,
                 name = "佐藤 花子",
                 email = "hanako@example.com"
             )

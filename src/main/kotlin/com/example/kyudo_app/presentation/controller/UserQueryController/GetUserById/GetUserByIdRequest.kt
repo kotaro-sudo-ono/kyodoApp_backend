@@ -3,7 +3,7 @@ package com.example.kyudo_app.presentation.controller.UserQueryController.GetUse
 import com.example.kyudo_app.application.useCase.GetUserByIdUseCase.GetUserByIdParam
 
 class GetUserByIdRequest (
-    val userId: Long
+    val userId: Int?
 ) {
     fun toParam(): GetUserByIdParam = GetUserByIdParam(userId)
 }

@@ -26,7 +26,7 @@ class UserRegisterDomainService(
     }
 
     @Transactional(readOnly = true)
-    fun getUserById(id: Long): User {
+    fun getUserById(id: Int?): User {
         val entity = userRegisterRepository.findByIdOrNull(id)
             ?: throw IllegalArgumentException("User not found for id=$id")
 

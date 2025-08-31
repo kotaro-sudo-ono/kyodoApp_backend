@@ -6,9 +6,9 @@ import org.springframework.stereotype.Service
 class UserGetByIdApplicationService : UserGetByIdUseCase {
     override fun getById(param: GetUserByIdParam): UserGetByIdDto? {
         // リポジトリ未実装なので仮のデータ返却
-        return if (param.userId == 1L) {
+        return if (param.userId == 1) {
             UserGetByIdDto(
-                userId = 1L,
+                userId = 1,
                 name = "テストユーザー",
                 email = "test@example.com"
             )
