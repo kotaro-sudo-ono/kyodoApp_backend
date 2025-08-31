@@ -20,6 +20,9 @@ class UserEntity(
     @Column(name = "role_id")
     var userRole: Int? = null,
 
+    @Column(name = "password", nullable = false)
+    var password: String,
+
     @ManyToMany(mappedBy = "users")
     val gameMatches: MutableList<GameMatchEntity> = mutableListOf(),
 

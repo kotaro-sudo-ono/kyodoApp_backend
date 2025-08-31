@@ -7,6 +7,7 @@ class User(
     val name: String,
     val email: String,
     val userRole: Int,
+    val password: String,
     val gameMatches: List<GameMatch> = emptyList(),
     val records: List<record> = emptyList(),
     val teamMembers: List<TeamMember> = emptyList(),

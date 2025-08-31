@@ -11,6 +11,7 @@ object UserMapper {
             name = domain.name,
             email = domain.email,
             userRole = domain.userRole,
+            password = domain.password,
             belongingGroup = domain.belongingGroup?.let { BelongingGroupMapper.toEntity(it) },
             // コレクションはエンティティに変換
             gameMatches = domain.gameMatches.map { GameMatchMapper.toEntity(it) }.toMutableList(),
@@ -25,6 +26,7 @@ object UserMapper {
             name = entity.name,
             email = entity.email,
             userRole = entity.userRole ?: 0,
+            password = entity.password,
             belongingGroup = entity.belongingGroup?.let { BelongingGroupMapper.toDomain(it) },
             // コレクションをドメインに変換
             gameMatches = entity.gameMatches.map { it.let { GameMatchMapper.toDomain(it) } },
