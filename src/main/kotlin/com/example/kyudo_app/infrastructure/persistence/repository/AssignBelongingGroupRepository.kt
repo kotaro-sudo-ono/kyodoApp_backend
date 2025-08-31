@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository
 import java.util.*
 
 @Repository
-interface AssignBelongingGroupRepository : JpaRepository<BelongingGroupEntity?, String?> {
-    override fun findById(groupId: String?): Optional<BelongingGroupEntity?>
+interface AssignBelongingGroupRepository : JpaRepository<BelongingGroupEntity, String> {
+    override fun findById(groupId: String): Optional<BelongingGroupEntity>
 }

@@ -1,7 +1,7 @@
 package com.example.kyudo_app.infrastructure.persistence.mapper
 
 import com.example.kyudo_app.domain.model.*
-import com.example.kyudo_app.infrastructure.persistence.entity.*
+import com.example.kyudo_app.infrastructure.persistence.entity.UserEntity
 
 object UserMapper {
 
