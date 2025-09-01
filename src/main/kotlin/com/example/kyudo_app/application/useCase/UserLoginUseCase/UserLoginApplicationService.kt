@@ -1,14 +1,31 @@
 package com.example.kyudo_app.application.useCase.UserLoginUseCase
 
+import com.example.kyudo_app.infrastructure.jwt.JwtUtil
+import com.example.kyudo_app.infrastructure.persistence.repository.UserRepository
+import com.example.kyudo_app.infrastructure.security.PasswordEncoder
+import org.springframework.security.authentication.BadCredentialsException
+import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
 
 @Service
-class UserLoginApplicationService : UserLoginUseCase {
+class UserLoginApplicationService(
+    private val userRepository: UserRepository,
+    private val passwordEncoder: PasswordEncoder,
+    private val jwtUtil: JwtUtil
+) : UserLoginUseCase {
 
     override fun login(param: UserLoginParam): UserLoginDto {
-        // ここで認証ロジックを書く（例：DBでユーザー確認、パスワード検証）
-        // 成功したらJWT発行
-        val jwtToken = "dummy_jwt_token" // 本当はJWT生成ロジックを呼ぶ
+        // ユーザー取得
+        val user = userRepository.findByEmail(param.email)
+            ?: throw UsernameNotFoundException("User not found: ${param.email}")
+
+        // パスワード照合
+        if (!passwordEncoder.matches(param.password, user.password)) {
+            throw BadCredentialsException("Invalid password")
+        }
+
+        // JWT 発行
+        val jwtToken = jwtUtil.generateToken(user.name, user.id!!)
 
         return UserLoginDto(jwtToken)
     }
