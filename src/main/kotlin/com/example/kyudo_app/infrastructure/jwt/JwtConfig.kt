@@ -1,4 +1,4 @@
-package com.example.kyudo_app.infrastructure.jwt.jwtUtil
+package com.example.kyudo_app.infrastructure.jwt
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

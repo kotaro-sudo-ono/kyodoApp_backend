@@ -4,4 +4,7 @@ import com.example.kyudo_app.infrastructure.persistence.entity.UserEntity
 import org.springframework.data.jpa.repository.JpaRepository
 
 
-interface UserRegisterRepository : JpaRepository<UserEntity, String>
+interface UserRepository : JpaRepository<UserEntity, String> {
+    fun findByName(username: String): UserEntity?
+    fun findByEmail(email: String): UserEntity?
+}

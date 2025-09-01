@@ -1,4 +1,4 @@
-package com.example.kyudo_app.infrastructure.jwt.jwtUtil
+package com.example.kyudo_app.infrastructure.jwt
 
 import org.springframework.beans.factory.annotation.Value
 
@@ -17,15 +17,15 @@ class JwtUtil(
 ) {
 
     /** JWT の生成 */
-    fun generateToken(userName: String): String {
+    fun generateToken(userName: String,userId:String): String {
         val now = Instant.now()
         val expiry = now.plusMillis(expirationMillis)
 
         val claims = JwtClaimsSet.builder()
-            .subject(userName)
+            .subject(userId)       // PK のユーザーIDを subject に
             .issuedAt(now)
             .expiresAt(expiry)
-            .claim("sub", userName) // 任意のクレームを追加
+            .claim("username", userName) // username はクレームとして追加
             .build()
 
         val parameters = JwtEncoderParameters.from(claims)
@@ -37,6 +37,12 @@ class JwtUtil(
 
     /** JWT からユーザ名を取得 */
     fun getUserNameFromToken(token: String): String {
+        val jwt = jwtDecoder.decode(token)
+        return jwt.claims["username"] as String
+    }
+
+    /** JWT からユーザIDを取得 */
+    fun getUserIdFromToken(token: String): String {
         val jwt = jwtDecoder.decode(token)
         return jwt.claims["sub"] as String
     }
