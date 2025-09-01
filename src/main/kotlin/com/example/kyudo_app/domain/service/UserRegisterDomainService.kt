@@ -3,14 +3,14 @@ package com.example.kyudo_app.domain.service
 import com.example.kyudo_app.domain.model.User
 import com.example.kyudo_app.infrastructure.persistence.entity.UserEntity
 import com.example.kyudo_app.infrastructure.persistence.mapper.UserMapper
-import com.example.kyudo_app.infrastructure.persistence.repository.UserRegisterRepository
+import com.example.kyudo_app.infrastructure.persistence.repository.UserRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.data.repository.findByIdOrNull
 
 @Service
 class UserRegisterDomainService(
-    private val userRegisterRepository: UserRegisterRepository
+    private val userRegisterRepository: UserRepository
 ) {
 
     @Transactional
