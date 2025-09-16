@@ -1,4 +1,4 @@
-package com.example.kyudo_app.presentation.controller.UserQueryController.GetUserById
+package com.example.kyudo_app.presentation.controller.userQueryController.getUserById
 
 import com.example.kyudo_app.application.useCase.GetUserByIdUseCase.UserGetByIdDto
 

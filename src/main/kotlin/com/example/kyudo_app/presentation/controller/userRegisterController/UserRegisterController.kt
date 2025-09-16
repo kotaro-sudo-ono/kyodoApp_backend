@@ -1,4 +1,4 @@
-package com.example.kyudo_app.presentation.controller.UserRegisterController
+package com.example.kyudo_app.presentation.controller.userRegisterController
 
 import com.example.kyudo_app.application.useCase.UserRegisterUseCase.UserRegisterUseCase
 import org.springframework.http.ResponseEntity

@@ -1,4 +1,4 @@
-package com.example.kyudo_app.presentation.controller.UserQueryController.GetAllUsers
+package com.example.kyudo_app.presentation.controller.userQueryController.getAllUsers
 
 import com.example.kyudo_app.application.useCase.UserGetAllUseCase.UserGetAllUseCase
 import org.springframework.http.ResponseEntity
