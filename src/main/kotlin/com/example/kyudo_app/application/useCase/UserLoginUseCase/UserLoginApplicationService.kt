@@ -25,7 +25,7 @@ class UserLoginApplicationService(
         }
 
         // JWT 発行
-        val jwtToken = jwtUtil.generateToken(user.name, user.id!!)
+        val jwtToken = jwtUtil.generateToken(user.email, user.id!!)
 
         return UserLoginDto(jwtToken)
     }

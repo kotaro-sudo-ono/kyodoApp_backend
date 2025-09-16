@@ -17,7 +17,7 @@ class JwtUtil(
 ) {
 
     /** JWT の生成 */
-    fun generateToken(userName: String,userId:String): String {
+    fun generateToken(email: String,userId:String): String {
         val now = Instant.now()
         val expiry = now.plusMillis(expirationMillis)
 
@@ -25,7 +25,7 @@ class JwtUtil(
             .subject(userId)       // PK のユーザーIDを subject に
             .issuedAt(now)
             .expiresAt(expiry)
-            .claim("username", userName) // username はクレームとして追加
+            .claim("email", email) // email はクレームとして追加
             .build()
 
         val parameters = JwtEncoderParameters.from(claims)
