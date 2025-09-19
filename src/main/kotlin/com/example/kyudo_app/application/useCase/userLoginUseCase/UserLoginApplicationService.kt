@@ -1,4 +1,4 @@
-package com.example.kyudo_app.application.useCase.UserLoginUseCase
+package com.example.kyudo_app.application.useCase.userLoginUseCase
 
 import com.example.kyudo_app.infrastructure.jwt.JwtUtil
 import com.example.kyudo_app.infrastructure.persistence.repository.UserRepository

@@ -1,4 +1,4 @@
-package com.example.kyudo_app.application.useCase.GetUserByIdUseCase
+package com.example.kyudo_app.application.useCase.getUserByIdUseCase
 
 import org.springframework.stereotype.Service
 

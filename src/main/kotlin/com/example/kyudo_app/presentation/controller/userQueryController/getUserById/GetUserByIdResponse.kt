@@ -1,6 +1,6 @@
 package com.example.kyudo_app.presentation.controller.userQueryController.getUserById
 
-import com.example.kyudo_app.application.useCase.GetUserByIdUseCase.UserGetByIdDto
+import com.example.kyudo_app.application.useCase.getUserByIdUseCase.UserGetByIdDto
 
 class GetUserByIdResponse(
     val userId: String?,

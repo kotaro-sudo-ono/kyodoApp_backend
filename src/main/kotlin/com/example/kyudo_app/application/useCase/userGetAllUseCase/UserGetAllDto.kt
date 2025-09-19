@@ -1,4 +1,4 @@
-package com.example.kyudo_app.application.useCase.UserGetAllUseCase
+package com.example.kyudo_app.application.useCase.userGetAllUseCase
 
 data class UserGetAllDto (
     val id: String?,

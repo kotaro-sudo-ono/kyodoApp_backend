@@ -1,7 +1,7 @@
 package com.example.kyudo_app.presentation.controller.userQueryController.getUserById
 
-import com.example.kyudo_app.application.useCase.GetUserByIdUseCase.GetUserByIdParam
-import com.example.kyudo_app.application.useCase.GetUserByIdUseCase.UserGetByIdUseCase
+import com.example.kyudo_app.application.useCase.getUserByIdUseCase.GetUserByIdParam
+import com.example.kyudo_app.application.useCase.getUserByIdUseCase.UserGetByIdUseCase
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.GetMapping

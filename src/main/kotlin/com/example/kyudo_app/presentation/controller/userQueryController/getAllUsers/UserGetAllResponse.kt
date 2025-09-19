@@ -1,6 +1,6 @@
 package com.example.kyudo_app.presentation.controller.userQueryController.getAllUsers
 
-import com.example.kyudo_app.application.useCase.UserGetAllUseCase.UserGetAllDto
+import com.example.kyudo_app.application.useCase.userGetAllUseCase.UserGetAllDto
 
 data class UserGetAllResponse(
     val id: String?,

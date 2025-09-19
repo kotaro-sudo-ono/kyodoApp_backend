@@ -1,6 +1,6 @@
 package com.example.kyudo_app.presentation.controller.useLoginController
 
-import com.example.kyudo_app.application.useCase.UserLoginUseCase.UserLoginParam
+import com.example.kyudo_app.application.useCase.userLoginUseCase.UserLoginParam
 
 data class UserLoginRequest(
     val email: String,

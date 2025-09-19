@@ -1,6 +1,6 @@
 package com.example.kyudo_app.presentation.controller.useLoginController
 
-import com.example.kyudo_app.application.useCase.UserLoginUseCase.UserLoginUseCase
+import com.example.kyudo_app.application.useCase.userLoginUseCase.UserLoginUseCase
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.PostMapping

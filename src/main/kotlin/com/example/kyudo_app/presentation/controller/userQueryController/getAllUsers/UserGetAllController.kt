@@ -1,6 +1,6 @@
 package com.example.kyudo_app.presentation.controller.userQueryController.getAllUsers
 
-import com.example.kyudo_app.application.useCase.UserGetAllUseCase.UserGetAllUseCase
+import com.example.kyudo_app.application.useCase.userGetAllUseCase.UserGetAllUseCase
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
