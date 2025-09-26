@@ -14,7 +14,7 @@ class UserEntity(
     @Column(name = "name", nullable = false)
     var name: String,
 
-    @Column(name = "mail_address", nullable = false)
+    @Column(name = "mail_address")
     var email: String,
 
     @Column(name = "role_id")
@@ -35,4 +35,17 @@ class UserEntity(
     @ManyToOne
     @JoinColumn(name = "group_id", referencedColumnName = "group_id")
     var belongingGroup: BelongingGroupEntity? = null
-)
+){
+    // Hibernate が使う引数なしコンストラクタ
+    protected constructor() : this(
+        id = null,
+        name = "",
+        email = "",
+        userRole = null,
+        password = "",
+        gameMatches = mutableListOf(),
+        records = mutableListOf(),
+        teamMembers = mutableListOf(),
+        belongingGroup = null
+    )
+}
