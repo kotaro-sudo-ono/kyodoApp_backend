@@ -13,10 +13,10 @@ open class CorsConfig {
         val source = UrlBasedCorsConfigurationSource()
         val config = CorsConfiguration()
 
-        config.setAllowedOrigins(mutableListOf<String?>("http://localhost:5173")) // フロントエンドのオリジンを許可
-        config.setAllowedMethods(mutableListOf<String?>("GET", "POST", "PUT", "DELETE", "OPTIONS")) // 許可するメソッド
-        config.setAllowedHeaders(mutableListOf<String?>("*")) // すべてのヘッダーを許可
-        config.setAllowCredentials(true) // クッキーや認証情報を許可
+        config.allowedOrigins = listOf("http://localhost:5173") // フロントのオリジン
+        config.allowedMethods = listOf("GET", "POST", "PUT", "DELETE", "OPTIONS")
+        config.allowedHeaders = listOf("*")
+        config.allowCredentials = true
 
         source.registerCorsConfiguration("/**", config)
         return CorsFilter(source)
