@@ -1,43 +1,20 @@
 package com.example.kyudo_app.domain.model
 
-import jakarta.persistence.*
-import lombok.Getter
-import lombok.Setter
 
 
-@Setter
-@Getter
-@Entity
-@Table(name = "users")
-class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    private var userId: Long? = null
+class User(
+    val userId: String?,
+    val name: String,
+    val email: String,
+    val userRole: Int,
+    val password: String,
+    val gameMatches: List<GameMatch> = emptyList(),
+    val records: List<record> = emptyList(),
+    val teamMembers: List<TeamMember> = emptyList(),
+    val belongingGroup: BelongingGroup? = null
+) {
+    // ビジネスロジック（例: ユーザーロールチェックなど）
+    fun isAdmin(): Boolean = userRole == 1
 
-    @Column(name = "name")
-    private var name: String? = null
-
-    @Column(name = "mail_address")
-    private var email: String? = null
-
-    @Column(name = "lore_id")
-    private var userRole: Int? = null
-
-    @ManyToMany(mappedBy = "users")
-    private val gameMatches: MutableList<GameMatch?>? = null
-
-    @OneToMany(mappedBy = "user")
-    private val records: MutableList<Record?>? = null
-
-    @OneToMany(mappedBy = "user")
-    private val teamMembers: MutableList<TeamMember?>? = null
-
-    @OneToOne
-    @JoinColumn(name = "group_id", referencedColumnName = "group_id")
-    private var belongingGroup: BelongingGroup? = null
-
-    fun setBelongingGroup(belongingGroup: BelongingGroup?) {
-        this.belongingGroup = belongingGroup
-    }
+    // その他、ドメインルールをここに実装
 }

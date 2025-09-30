@@ -1,0 +1,19 @@
+package com.example.kyudo_app.presentation.controller.userQueryController.getUserById
+
+import com.example.kyudo_app.application.useCase.getUserByIdUseCase.UserGetByIdDto
+
+class GetUserByIdResponse(
+    val userId: String?,
+    val name: String,
+    val email: String
+){
+    companion object {
+        fun from(dto: UserGetByIdDto): GetUserByIdResponse {
+            return GetUserByIdResponse(
+                userId = dto.userId,
+                name = dto.name,
+                email = dto.email
+            )
+        }
+    }
+}

@@ -2,8 +2,8 @@ package com.example.kyudo_app.presentation.controller
 
 import com.example.kyudo_app.application.dto.AssignGroupRequest
 import com.example.kyudo_app.domain.model.BelongingGroup
-import com.example.kyudo_app.domain.service.AssignBelongingGroupService
-import com.example.kyudo_app.domain.service.BelongingGroupResisterService
+import com.example.kyudo_app.domain.service.AssignBelongingGroupDomainService
+import com.example.kyudo_app.domain.service.BelongingGroupResisterDomainService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/belongingGroup")
 class BelongingGroupController(
-    private val belongingGroupResisterService: BelongingGroupResisterService,
-    private val assignBelongingGroupService: AssignBelongingGroupService
+    private val belongingGroupResisterService: BelongingGroupResisterDomainService,
+    private val assignBelongingGroupService: AssignBelongingGroupDomainService
 ) {
 
     @PostMapping("/register")

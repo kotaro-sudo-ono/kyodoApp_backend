@@ -1,0 +1,29 @@
+package com.example.kyudo_app.presentation.controller.userQueryController.getUserById
+
+import com.example.kyudo_app.application.useCase.getUserByIdUseCase.GetUserByIdParam
+import com.example.kyudo_app.application.useCase.getUserByIdUseCase.UserGetByIdUseCase
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.CrossOrigin
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
+
+@RestController
+@RequestMapping("/user")
+@CrossOrigin(origins = ["http://localhost:5173"])
+class UserGetByIdController(
+    private val userGetByIdUseCase: UserGetByIdUseCase
+) {
+    @GetMapping("/{id}")
+    fun getUserById(@PathVariable id: String?): ResponseEntity<GetUserByIdResponse> {
+        val param = GetUserByIdParam(id)
+        val dto = userGetByIdUseCase.getById(param)
+
+        return if (dto != null) {
+            ResponseEntity.ok(GetUserByIdResponse.from(dto))
+        } else {
+            ResponseEntity.notFound().build()
+        }
+    }
+}
