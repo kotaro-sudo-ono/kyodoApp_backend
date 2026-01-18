@@ -13,7 +13,10 @@ open class CorsConfig {
         val source = UrlBasedCorsConfigurationSource()
         val config = CorsConfiguration()
 
-        config.allowedOrigins = listOf("http://localhost:5173") // フロントのオリジン
+        config.allowedOrigins = listOf(
+            "http://localhost:5173",  // IPv4
+            "http://[::1]:5173"       // IPv6
+        ) // フロントのオリジン
         config.allowedMethods = listOf("GET", "POST", "PUT", "DELETE", "OPTIONS")
         config.allowedHeaders = listOf("*")
         config.allowCredentials = true
