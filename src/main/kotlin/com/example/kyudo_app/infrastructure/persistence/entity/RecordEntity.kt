@@ -19,5 +19,14 @@ class RecordEntity(
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    var user: UserEntity? = null
+    var user: UserEntity? = null,
+
+    @Column(name = "practice_date")
+    var practiceDate: java.time.LocalDateTime? = null,
+
+    @Column(name = "practice_type_id")
+    var practiceTypeId: Int? = null,
+
+    @OneToMany(mappedBy = "record", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+    var arrows: MutableList<ArrowRecordEntity> = mutableListOf()
 )

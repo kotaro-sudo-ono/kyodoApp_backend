@@ -94,11 +94,18 @@
             <artifactId>ulid-creator</artifactId>
             <version>5.2.0</version>
         </dependency>
+
+        <!-- MyBatis を追加 -->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>3.0.1</version>
+        </dependency>
     </dependencies>
 
     <build>
         <sourceDirectory>src/main/kotlin</sourceDirectory>
-        <testSourceDirectory>src/test/kotlin</testSourceDirectory>
+        <testSourceDirectory>src/test/java</testSourceDirectory>
         <plugins>
             <!-- Kotlin Plugin -->
             <plugin>
@@ -117,6 +124,9 @@
                         <option>all-open:annotation=org.springframework.stereotype.Repository</option>
                         <option>all-open:annotation=org.springframework.web.bind.annotation.RestController</option>
                         <option>all-open:annotation=org.springframework.context.annotation.Configuration</option>
+                        <option>all-open:annotation=jakarta.persistence.Entity</option>
+                        <option>all-open:annotation=jakarta.persistence.MappedSuperclass</option>
+                        <option>all-open:annotation=jakarta.persistence.Embeddable</option>
                     </pluginOptions>
                 </configuration>
                 <executions>

@@ -15,6 +15,7 @@ class EntityListener {
             is RecordEntity -> if (entity.id == null) entity.id = UlidGenerator.generateStatic()
             is TeamEntity -> if (entity.id == null) entity.id = UlidGenerator.generateStatic()
             is TeamMemberEntity -> if (entity.id == null) entity.id = UlidGenerator.generateStatic()
+            is ArrowRecordEntity -> if (entity.arrowId == null) entity.arrowId = UlidGenerator.generateStatic()
         }
     }
 }
