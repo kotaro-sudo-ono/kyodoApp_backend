@@ -1,6 +1,7 @@
 package com.example.kyudo_app.domain.service
 
-import com.example.kyudo_app.application.useCase.recordUseCase.MonthlySummaryDto
+import com.example.kyudo_app.domain.model.MonthlySummary
+import com.example.kyudo_app.domain.model.PracticeTypeConstants
 import com.example.kyudo_app.domain.model.record
 import com.example.kyudo_app.infrastructure.persistence.mapper.ArrowRecordMapper
 import com.example.kyudo_app.infrastructure.persistence.mapper.RecordMapper
@@ -18,10 +19,6 @@ class RecordDomainService(
     private val recordRepository: RecordRepository,
     private val userRepository: UserRepository
 ) {
-
-    companion object {
-        val PRACTICE_TYPE_MAP = mapOf(1 to "練習", 2 to "個人戦", 3 to "チーム戦")
-    }
 
     @Transactional
     fun saveRecord(domain: record): record {
@@ -46,7 +43,7 @@ class RecordDomainService(
     }
 
     @Transactional(readOnly = true)
-    fun getMonthlySummary(userId: String, months: List<String>): List<MonthlySummaryDto> {
+    fun getMonthlySummary(userId: String, months: List<String>): List<MonthlySummary> {
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM")
         val yearMonths = months.map { YearMonth.parse(it) }
         val start = yearMonths.minOf { it.atDay(1) }.atStartOfDay()
@@ -69,7 +66,7 @@ class RecordDomainService(
             } else {
                 0.0
             }
-            MonthlySummaryDto(
+            MonthlySummary(
                 month = month,
                 hitCount = totalHit,
                 totalShots = totalShots,

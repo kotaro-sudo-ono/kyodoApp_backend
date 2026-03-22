@@ -54,9 +54,13 @@ class RecordApplicationService(
 
     @Transactional(readOnly = true)
     override fun getMonthlySummary(userId: String, months: List<String>): List<MonthlySummaryDto> {
-        return recordDomainService.getMonthlySummary(
-            userId,
-            months
-        )
+        return recordDomainService.getMonthlySummary(userId, months).map { summary ->
+            MonthlySummaryDto(
+                month = summary.month,
+                hitCount = summary.hitCount,
+                totalShots = summary.totalShots,
+                hitRate = summary.hitRate
+            )
+        }
     }
 }
