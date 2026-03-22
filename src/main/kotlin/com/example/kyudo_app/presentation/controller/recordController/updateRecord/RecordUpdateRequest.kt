@@ -2,7 +2,7 @@ package com.example.kyudo_app.presentation.controller.recordController.updateRec
 
 import com.example.kyudo_app.application.useCase.recordUseCase.recordUpdate.ArrowUpdateParam
 import com.example.kyudo_app.application.useCase.recordUseCase.recordUpdate.RecordUpdateCommand
-import java.time.OffsetDateTime
+import java.time.LocalDateTime
 
 data class RecordUpdateRequest(
     val hitCount: Int,
@@ -16,7 +16,7 @@ data class RecordUpdateRequest(
             recordId = recordId,
             hitCount = this.hitCount,
             totalShots = this.totalShots,
-            practiceDate = this.practiceDate?.let { OffsetDateTime.parse(it).toLocalDateTime() },
+            practiceDate = this.practiceDate?.let { LocalDateTime.parse(it) },
             practiceTypeId = this.practiceTypeId,
             arrows = this.arrows.map { arrow ->
                 ArrowUpdateParam(

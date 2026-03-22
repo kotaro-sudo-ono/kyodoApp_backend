@@ -27,6 +27,6 @@ class RecordEntity(
     @Column(name = "practice_type_id")
     var practiceTypeId: Int? = null,
 
-    @OneToMany(mappedBy = "record", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "record", cascade = [CascadeType.ALL], fetch = FetchType.LAZY, orphanRemoval = true)
     var arrows: MutableList<ArrowRecordEntity> = mutableListOf()
 )
