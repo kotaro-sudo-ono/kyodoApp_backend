@@ -9,6 +9,7 @@ data class RecordGetResponse(
     val totalShots: Int,
     val practiceDate: LocalDateTime? = null,
     val practiceTypeId: Int? = null,
+    val practiceType: String? = null,
     val arrows: List<ArrowResponse> = emptyList()
 ) {
     companion object {
@@ -19,6 +20,7 @@ data class RecordGetResponse(
                 totalShots = dto.totalShots,
                 practiceDate = dto.practiceDate,
                 practiceTypeId = dto.practiceTypeId,
+                practiceType = dto.practiceTypeName,
                 arrows = dto.arrows.map { ArrowResponse.from(it) }
             )
         }

@@ -51,4 +51,12 @@ class RecordApplicationService(
     override fun getRecordsByDate(date: java.time.LocalDate): List<RecordGetDto> {
         return recordDomainService.getRecordsByDate(date).map { RecordGetDto.from(it) }
     }
+
+    @Transactional(readOnly = true)
+    override fun getMonthlySummary(userId: String, months: List<String>): List<MonthlySummaryDto> {
+        return recordDomainService.getMonthlySummary(
+            userId,
+            months
+        )
+    }
 }
