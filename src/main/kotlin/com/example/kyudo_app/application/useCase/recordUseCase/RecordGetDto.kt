@@ -1,5 +1,6 @@
 package com.example.kyudo_app.application.useCase.recordUseCase
 
+import com.example.kyudo_app.domain.model.PracticeTypeConstants
 import com.example.kyudo_app.domain.model.record
 import java.time.LocalDateTime
 
@@ -9,6 +10,7 @@ data class RecordGetDto(
     val totalShots: Int,
     val practiceDate: LocalDateTime? = null,
     val practiceTypeId: Int? = null,
+    val practiceTypeName: String? = null,
     val arrows: List<ArrowDto> = emptyList()
 ) {
     companion object {
@@ -19,6 +21,7 @@ data class RecordGetDto(
                 totalShots = domain.totalShots,
                 practiceDate = domain.practiceDate,
                 practiceTypeId = domain.practiceTypeId,
+                practiceTypeName = domain.practiceTypeId?.let { PracticeTypeConstants.PRACTICE_TYPE_MAP[it] },
                 arrows = domain.arrows.map { ArrowDto.from(it) }
             )
         }

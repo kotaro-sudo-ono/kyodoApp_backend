@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
@@ -35,5 +36,14 @@ class RecordController(
         val localDate = java.time.LocalDate.parse(date)  // YYYY-MM-DD
         val dtos = recordUseCase.getRecordsByDate(localDate)
         return ResponseEntity.ok(dtos.map { RecordGetResponse.from(it) })
+    }
+
+    @GetMapping("/user/{userId}/monthly-summary")
+    fun getMonthlySummary(
+        @PathVariable userId: String,
+        @RequestParam months: List<String>
+    ): ResponseEntity<List<MonthlySummaryResponse>> {
+        val dto = recordUseCase.getMonthlySummary(userId, months)
+        return ResponseEntity.ok(dto.map { MonthlySummaryResponse.from(it) })
     }
 }
