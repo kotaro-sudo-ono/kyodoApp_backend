@@ -33,7 +33,8 @@ class RecordApplicationService(
                     arrowNumber = a.arrowNumber,
                     positionX = a.positionX,
                     positionY = a.positionY,
-                    isHit = a.isHit
+                    isHit = a.isHit,
+                    standNumber = a.standNumber
                 )
             }
         )
@@ -56,7 +57,8 @@ class RecordApplicationService(
                     arrowNumber = a.arrowNumber,
                     positionX = a.positionX,
                     positionY = a.positionY,
-                    isHit = a.isHit
+                    isHit = a.isHit,
+                    standNumber = a.standNumber
                 )
             }
         )

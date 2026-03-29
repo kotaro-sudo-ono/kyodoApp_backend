@@ -8,12 +8,13 @@ data class RecordUpdateCommand(
     val totalShots: Int,
     val practiceDate: LocalDateTime? = null,
     val practiceTypeId: Int? = null,
-    val arrows: List<ArrowUpdateParam> = emptyList()
+    val arrows: List<ArrowUpdateParam> = emptyList(),
 )
 
 data class ArrowUpdateParam(
     val arrowNumber: Int,
     val positionX: Double?,
     val positionY: Double?,
-    val isHit: Boolean
+    val isHit: Boolean,
+    val standNumber: Int
 )

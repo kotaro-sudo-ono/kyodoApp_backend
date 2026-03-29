@@ -32,6 +32,9 @@ class ArrowRecordEntity(
     @Column(name = "remarks")
     var remarks: String? = null,
 
+    @Column(name = "stand_number")
+    var standNumber: Int? = null,
+
     @ManyToOne
     @JoinColumn(name = "record_id")
     var record: RecordEntity? = null

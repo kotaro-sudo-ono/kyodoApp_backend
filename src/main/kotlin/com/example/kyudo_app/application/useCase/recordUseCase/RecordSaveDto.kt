@@ -31,7 +31,8 @@ data class ArrowDto(
     val arrowNumber: Int,
     val positionX: Double?,
     val positionY: Double?,
-    val isHit: Boolean
+    val isHit: Boolean,
+    val standNumber: Int = 1
 ) {
     companion object {
         fun from(domain: com.example.kyudo_app.domain.model.ArrowRecord): ArrowDto {
@@ -40,7 +41,8 @@ data class ArrowDto(
                 arrowNumber = domain.arrowNumber,
                 positionX = domain.positionX,
                 positionY = domain.positionY,
-                isHit = domain.isHit
+                isHit = domain.isHit,
+                standNumber = domain.standNumber
             )
         }
     }

@@ -31,7 +31,8 @@ data class ArrowResponse(
     val arrowNumber: Int,
     val positionX: Double?,
     val positionY: Double?,
-    val isHit: Boolean
+    val isHit: Boolean,
+    val standNumber: Int = 1
 ) {
     companion object {
         fun from(dto: ArrowDto): ArrowResponse {
@@ -40,7 +41,8 @@ data class ArrowResponse(
                 arrowNumber = dto.arrowNumber,
                 positionX = dto.positionX,
                 positionY = dto.positionY,
-                isHit = dto.isHit
+                isHit = dto.isHit,
+                standNumber = dto.standNumber
             )
         }
     }

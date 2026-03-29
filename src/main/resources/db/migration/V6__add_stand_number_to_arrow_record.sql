@@ -1,0 +1,1 @@
+ALTER TABLE arrow_record ADD COLUMN stand_number INT NOT NULL DEFAULT 1;

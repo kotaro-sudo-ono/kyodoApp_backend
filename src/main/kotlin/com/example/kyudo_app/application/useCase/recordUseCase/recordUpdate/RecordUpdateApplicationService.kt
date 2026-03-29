@@ -23,11 +23,12 @@ class RecordUpdateApplicationService(
                 ArrowRecord(
                     arrowId = null,
                     arrowNumber = a.arrowNumber,
+                    standNumber = a.standNumber,
                     positionX = a.positionX,
                     positionY = a.positionY,
                     isHit = a.isHit
                 )
-            }
+            },
         )
         val updated = recordDomainService.updateRecord(domain)
         return RecordUpdateDto.from(updated)

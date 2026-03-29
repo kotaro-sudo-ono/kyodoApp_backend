@@ -9,7 +9,7 @@ data class RecordUpdateRequest(
     val totalShots: Int,
     val practiceDate: String? = null,
     val practiceTypeId: Int? = null,
-    val arrows: List<ArrowUpdateRequestItem> = emptyList()
+    val arrows: List<ArrowUpdateRequestItem> = emptyList(),
 ) {
     fun toCommand(recordId: String): RecordUpdateCommand {
         return RecordUpdateCommand(
@@ -21,17 +21,19 @@ data class RecordUpdateRequest(
             arrows = this.arrows.map { arrow ->
                 ArrowUpdateParam(
                     arrowNumber = arrow.arrowNumber,
+                    standNumber = arrow.standNumber,
                     positionX = arrow.positionX,
                     positionY = arrow.positionY,
                     isHit = arrow.isHit
                 )
-            }
+            },
         )
     }
 }
 
 data class ArrowUpdateRequestItem(
     val arrowNumber: Int,
+    val standNumber: Int = 1,
     val positionX: Double?,
     val positionY: Double?,
     val isHit: Boolean
