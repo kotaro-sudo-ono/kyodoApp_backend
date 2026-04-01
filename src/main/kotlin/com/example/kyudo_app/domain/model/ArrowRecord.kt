@@ -5,5 +5,6 @@ class ArrowRecord(
     val arrowNumber: Int,
     val positionX: Double?,
     val positionY: Double?,
-    val isHit: Boolean
+    val isHit: Boolean,
+    val standNumber: Int = 1
 )

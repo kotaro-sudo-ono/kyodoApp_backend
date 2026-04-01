@@ -14,6 +14,7 @@ object ArrowRecordMapper {
             hit = domain.isHit,
             positionX = domain.positionX,
             positionY = domain.positionY,
+            standNumber = domain.standNumber,
             record = record
         )
     }
@@ -24,7 +25,8 @@ object ArrowRecordMapper {
             arrowNumber = entity.arrowNo ?: 0,
             positionX = entity.positionX,
             positionY = entity.positionY,
-            isHit = entity.hit ?: false
+            isHit = entity.hit ?: false,
+            standNumber = entity.standNumber
         )
     }
 }

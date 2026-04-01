@@ -32,6 +32,24 @@ class RecordDomainService(
         return RecordMapper.toDomain(saved)
     }
 
+    @Transactional
+    fun updateRecord(domain: record): record {
+        val recordId = requireNotNull(domain.recordId) { "recordId is required for update" }
+        val entity = recordRepository.findByIdOrNull(recordId)
+            ?: throw NoSuchElementException("Record not found: $recordId")
+        entity.hitCount = domain.hitCount
+        entity.totalShots = domain.totalShots
+        entity.practiceDate = domain.practiceDate
+        entity.practiceTypeId = domain.practiceTypeId
+        entity.arrows.clear()
+        domain.arrows.forEach { arrow ->
+            val arrowEntity = ArrowRecordMapper.toEntity(arrow, entity)
+            entity.arrows.add(arrowEntity)
+        }
+        val saved = recordRepository.save(entity)
+        return RecordMapper.toDomain(saved)
+    }
+
     @Transactional(readOnly = true)
     fun getRecordsByUserId(userId: String): List<record> {
         return recordRepository.findByUser_Id(userId).map { RecordMapper.toDomain(it) }
