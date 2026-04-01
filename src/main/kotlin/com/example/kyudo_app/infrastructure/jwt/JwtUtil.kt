@@ -1,5 +1,6 @@
 package com.example.kyudo_app.infrastructure.jwt
 
+import com.example.kyudo_app.application.useCase.userLoginUseCase.TokenGeneratorPort
 import org.springframework.beans.factory.annotation.Value
 
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters
@@ -14,10 +15,10 @@ class JwtUtil(
     @Value("\${jwt.expiration}") private val expirationMillis: Long,
     private val jwtEncoder: JwtEncoder,
     private val jwtDecoder: JwtDecoder
-) {
+) : TokenGeneratorPort {
 
     /** JWT の生成 */
-    fun generateToken(email: String,userId:String): String {
+    override fun generateToken(email: String, userId: String): String {
         val now = Instant.now()
         val expiry = now.plusMillis(expirationMillis)
 

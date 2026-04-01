@@ -16,4 +16,7 @@ class UserRepositoryAdapter(
 
     override fun findById(id: String): User? =
         userRepository.findByIdOrNull(id)?.let { UserMapper.toDomain(it) }
+
+    override fun findByEmail(email: String): User? =
+        userRepository.findByEmail(email)?.let { UserMapper.toDomain(it) }
 }

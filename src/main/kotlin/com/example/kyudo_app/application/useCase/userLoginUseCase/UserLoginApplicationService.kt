@@ -1,17 +1,16 @@
 package com.example.kyudo_app.application.useCase.userLoginUseCase
 
-import com.example.kyudo_app.infrastructure.jwt.JwtUtil
-import com.example.kyudo_app.infrastructure.persistence.repository.UserRepository
-import com.example.kyudo_app.infrastructure.security.PasswordEncoder
+import com.example.kyudo_app.domain.repository.UserRepositoryPort
+import com.example.kyudo_app.domain.service.PasswordEncoderPort
 import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
 
 @Service
 class UserLoginApplicationService(
-    private val userRepository: UserRepository,
-    private val passwordEncoder: PasswordEncoder,
-    private val jwtUtil: JwtUtil
+    private val userRepository: UserRepositoryPort,
+    private val passwordEncoder: PasswordEncoderPort,
+    private val tokenGenerator: TokenGeneratorPort
 ) : UserLoginUseCase {
 
     override fun login(param: UserLoginParam): UserLoginDto {
@@ -25,7 +24,7 @@ class UserLoginApplicationService(
         }
 
         // JWT 発行
-        val jwtToken = jwtUtil.generateToken(user.email, user.id!!)
+        val jwtToken = tokenGenerator.generateToken(user.email, user.userId!!)
 
         return UserLoginDto(jwtToken)
     }

@@ -1,15 +1,15 @@
 package com.example.kyudo_app.application.useCase.userRegisterUseCase
 
 import com.example.kyudo_app.domain.model.User
+import com.example.kyudo_app.domain.service.PasswordEncoderPort
 import com.example.kyudo_app.domain.service.UserRegisterDomainService
-import com.example.kyudo_app.infrastructure.security.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
 class UserRegisterApplicationService(
     private val userRegisterDomainService: UserRegisterDomainService,
-    private val passwordEncoder: PasswordEncoder
+    private val passwordEncoder: PasswordEncoderPort
 ): UserRegisterUseCase {
 
     @Transactional
