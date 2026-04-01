@@ -3,6 +3,7 @@ package com.example.kyudo_app.presentation.controller.recordController.updateRec
 import com.example.kyudo_app.application.useCase.recordUseCase.recordUpdate.ArrowUpdateParam
 import com.example.kyudo_app.application.useCase.recordUseCase.recordUpdate.RecordUpdateCommand
 import java.time.LocalDateTime
+import java.time.format.DateTimeParseException
 
 data class RecordUpdateRequest(
     val hitCount: Int,
@@ -16,7 +17,13 @@ data class RecordUpdateRequest(
             recordId = recordId,
             hitCount = this.hitCount,
             totalShots = this.totalShots,
-            practiceDate = this.practiceDate?.let { LocalDateTime.parse(it) },
+            practiceDate = this.practiceDate?.let {
+                try {
+                    LocalDateTime.parse(it)
+                } catch (e: DateTimeParseException) {
+                    throw IllegalArgumentException("Invalid date format. Expected ISO-8601 format (e.g., 2024-01-15T10:30:00)")
+                }
+            },
             practiceTypeId = this.practiceTypeId,
             arrows = this.arrows.map { arrow ->
                 ArrowUpdateParam(
