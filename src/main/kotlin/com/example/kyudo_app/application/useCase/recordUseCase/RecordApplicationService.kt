@@ -43,29 +43,6 @@ class RecordApplicationService(
         return hoge;
     }
 
-    @Transactional
-    override fun updateRecord(param: RecordUpdateParam): RecordSaveDto {
-        val domain = record(
-            recordId = param.recordId,
-            hitCount = param.hitCount,
-            totalShots = param.totalShots,
-            practiceDate = param.practiceDate,
-            practiceTypeId = param.practiceTypeId,
-            arrows = param.arrows.map { a ->
-                ArrowRecord(
-                    arrowId = null,
-                    arrowNumber = a.arrowNumber,
-                    positionX = a.positionX,
-                    positionY = a.positionY,
-                    isHit = a.isHit,
-                    standNumber = a.standNumber
-                )
-            }
-        )
-        val updated = recordDomainService.updateRecord(domain)
-        return RecordSaveDto.from(updated)
-    }
-
     @Transactional(readOnly = true)
     override fun getRecordsByUserId(userId: String): List<RecordGetDto> {
         return recordDomainService.getRecordsByUserId(userId).map { RecordGetDto.from(it) }
