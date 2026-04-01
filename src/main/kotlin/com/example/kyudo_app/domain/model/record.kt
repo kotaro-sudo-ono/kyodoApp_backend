@@ -9,6 +9,5 @@ class record(
     val user: User? = null,
     val practiceDate: LocalDateTime? = null,
     val practiceTypeId: Int? = null,
-    val arrows: List<ArrowRecord> = emptyList(),
-    val standNumber: Number? = null
+    val arrows: List<ArrowRecord> = emptyList()
 )
