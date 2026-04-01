@@ -37,4 +37,8 @@ data class ArrowUpdateRequestItem(
     val positionX: Double?,
     val positionY: Double?,
     val isHit: Boolean
-)
+) {
+    init {
+        require(standNumber >= 1) { "standNumber must be greater than or equal to 1" }
+    }
+}
