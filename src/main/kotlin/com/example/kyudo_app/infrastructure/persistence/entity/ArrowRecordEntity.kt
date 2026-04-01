@@ -33,7 +33,7 @@ class ArrowRecordEntity(
     var remarks: String? = null,
 
     @Column(name = "stand_number")
-    var standNumber: Int? = null,
+    var standNumber: Int = 1,
 
     @ManyToOne
     @JoinColumn(name = "record_id")

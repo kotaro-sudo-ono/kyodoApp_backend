@@ -26,7 +26,7 @@ object ArrowRecordMapper {
             positionX = entity.positionX,
             positionY = entity.positionY,
             isHit = entity.hit ?: false,
-            standNumber = entity.standNumber ?: 1
+            standNumber = entity.standNumber
         )
     }
 }
