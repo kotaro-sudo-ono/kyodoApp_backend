@@ -1,11 +1,11 @@
 package com.example.kyudo_app.infrastructure.persistence.mapper
-import com.example.kyudo_app.domain.model.record
+import com.example.kyudo_app.domain.model.Record
 import com.example.kyudo_app.domain.model.User
 import com.example.kyudo_app.infrastructure.persistence.entity.RecordEntity
 
 object RecordMapper {
 
-    fun toEntity(domain: record): RecordEntity {
+    fun toEntity(domain: Record): RecordEntity {
         return RecordEntity(
             id = domain.recordId,
             hitCount = domain.hitCount,
@@ -17,8 +17,8 @@ object RecordMapper {
         )
     }
 
-    fun toDomain(entity: RecordEntity): record {
-        return record(
+    fun toDomain(entity: RecordEntity): Record {
+        return Record(
             recordId = entity.id,
             hitCount = entity.hitCount ?: 0,
             totalShots = entity.totalShots ?: 0,

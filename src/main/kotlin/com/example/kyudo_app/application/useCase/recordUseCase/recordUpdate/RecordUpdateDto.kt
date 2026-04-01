@@ -1,6 +1,6 @@
 package com.example.kyudo_app.application.useCase.recordUseCase.recordUpdate
 
-import com.example.kyudo_app.domain.model.record
+import com.example.kyudo_app.domain.model.Record
 import java.time.LocalDateTime
 data class RecordUpdateDto(
     val recordId: String?,
@@ -11,7 +11,7 @@ data class RecordUpdateDto(
     val arrows: List<ArrowUpdateDto> = emptyList(),
 ) {
     companion object {
-        fun from(domain: record): RecordUpdateDto {
+        fun from(domain: Record): RecordUpdateDto {
             return RecordUpdateDto(
                 recordId = domain.recordId,
                 hitCount = domain.hitCount,

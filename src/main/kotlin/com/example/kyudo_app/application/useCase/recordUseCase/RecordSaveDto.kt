@@ -1,6 +1,6 @@
 package com.example.kyudo_app.application.useCase.recordUseCase
 
-import com.example.kyudo_app.domain.model.record
+import com.example.kyudo_app.domain.model.Record
 import java.time.LocalDateTime
 
 data class RecordSaveDto(
@@ -12,7 +12,7 @@ data class RecordSaveDto(
     val arrows: List<ArrowDto> = emptyList()
 ) {
     companion object {
-        fun from(domain: record): RecordSaveDto {
+        fun from(domain: Record): RecordSaveDto {
             return RecordSaveDto(
                 recordId = domain.recordId,
                 hitCount = domain.hitCount,

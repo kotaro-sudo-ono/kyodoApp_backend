@@ -2,7 +2,7 @@ package com.example.kyudo_app.application.useCase.recordUseCase
 
 import com.example.kyudo_app.domain.model.ArrowRecord
 import com.example.kyudo_app.domain.model.User
-import com.example.kyudo_app.domain.model.record
+import com.example.kyudo_app.domain.model.Record
 import com.example.kyudo_app.domain.service.RecordDomainService
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -14,7 +14,7 @@ class RecordApplicationService(
 
     @Transactional
     override fun saveRecord(param: RecordSaveParam): RecordSaveDto {
-        val domain = record(
+        val domain = Record(
             recordId = null,
             hitCount = param.hitCount,
             totalShots = param.totalShots,

@@ -1,0 +1,471 @@
+openapi: "3.0.0"
+info:
+  title: 弓道アプリ バックエンド API
+  description: 弓道アプリケーションのバックエンドRESTful API仕様書
+  version: "1.0.0"
+
+servers:
+  - url: http://localhost:8082
+    description: ローカル開発サーバー
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    UserRegisterRequest:
+      type: object
+      required:
+        - name
+        - email
+        - password
+      properties:
+        name:
+          type: string
+          description: ユーザー名
+          example: "山田太郎"
+        email:
+          type: string
+          format: email
+          description: メールアドレス
+          example: "yamada@example.com"
+        password:
+          type: string
+          description: パスワード（平文）
+          example: "password123"
+
+    UserRegisterResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+          description: 登録されたユーザーID（UUID）
+          example: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+        name:
+          type: string
+          description: ユーザー名
+          example: "山田太郎"
+        email:
+          type: string
+          format: email
+          description: メールアドレス
+          example: "yamada@example.com"
+
+    UserLoginRequest:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+          description: メールアドレス
+          example: "yamada@example.com"
+        password:
+          type: string
+          description: パスワード
+          example: "password123"
+
+    UserLoginResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          description: JWTアクセストークン
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+
+    UserGetAllResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+          description: ユーザーID（UUID）
+          example: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+        name:
+          type: string
+          description: ユーザー名
+          example: "山田太郎"
+        email:
+          type: string
+          format: email
+          description: メールアドレス
+          example: "yamada@example.com"
+
+    GetUserByIdResponse:
+      type: object
+      properties:
+        userId:
+          type: string
+          nullable: true
+          description: ユーザーID（UUID）
+          example: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+        name:
+          type: string
+          description: ユーザー名
+          example: "山田太郎"
+        email:
+          type: string
+          format: email
+          description: メールアドレス
+          example: "yamada@example.com"
+
+    BelongingGroup:
+      type: object
+      required:
+        - name
+      properties:
+        groupId:
+          type: string
+          nullable: true
+          description: グループID（UUID）
+          example: "b2c3d4e5-f6a7-8901-bcde-f12345678901"
+        name:
+          type: string
+          description: グループ名
+          example: "初段クラス"
+
+    AssignGroupRequest:
+      type: object
+      properties:
+        groupId:
+          type: string
+          nullable: true
+          description: 割り当てるグループID
+          example: "b2c3d4e5-f6a7-8901-bcde-f12345678901"
+        userId:
+          type: string
+          nullable: true
+          description: 対象ユーザーID
+          example: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+
+    RecordSaveRequest:
+      type: object
+      required:
+        - hitCount
+        - totalShots
+        - userId
+      properties:
+        hitCount:
+          type: integer
+          description: 的中数
+          example: 7
+        totalShots:
+          type: integer
+          description: 総射数
+          example: 10
+        userId:
+          type: string
+          description: 記録を保存するユーザーID
+          example: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+
+    RecordSaveResponse:
+      type: object
+      properties:
+        recordId:
+          type: string
+          nullable: true
+          description: 保存された記録ID（UUID）
+          example: "c3d4e5f6-a7b8-9012-cdef-123456789012"
+        hitCount:
+          type: integer
+          description: 的中数
+          example: 7
+        totalShots:
+          type: integer
+          description: 総射数
+          example: 10
+
+    RecordGetResponse:
+      type: object
+      properties:
+        recordId:
+          type: string
+          nullable: true
+          description: 記録ID（UUID）
+          example: "c3d4e5f6-a7b8-9012-cdef-123456789012"
+        hitCount:
+          type: integer
+          description: 的中数
+          example: 7
+        totalShots:
+          type: integer
+          description: 総射数
+          example: 10
+
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: エラーメッセージ
+          example: "Error assigning group: User not found"
+
+paths:
+  /user/register:
+    post:
+      tags:
+        - User
+      summary: ユーザー登録
+      description: 新規ユーザーを登録する。認証不要。
+      operationId: registerUser
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRegisterRequest'
+            example:
+              name: "山田太郎"
+              email: "yamada@example.com"
+              password: "password123"
+      responses:
+        '200':
+          description: 登録成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserRegisterResponse'
+              example:
+                id: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+                name: "山田太郎"
+                email: "yamada@example.com"
+        '400':
+          description: リクエスト不正（バリデーションエラー等）
+
+  /user/login:
+    post:
+      tags:
+        - User
+      summary: ユーザーログイン
+      description: メールアドレスとパスワードで認証し、JWTトークンを取得する。認証不要。
+      operationId: loginUser
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLoginRequest'
+            example:
+              email: "yamada@example.com"
+              password: "password123"
+      responses:
+        '200':
+          description: ログイン成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserLoginResponse'
+              example:
+                token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+        '400':
+          description: 認証失敗（メールアドレスまたはパスワードが不正）
+        '401':
+          description: 認証失敗（資格情報不正）
+
+  /user:
+    get:
+      tags:
+        - User
+      summary: 全ユーザー取得
+      description: 登録されている全ユーザーのリストを取得する。JWT認証必須。
+      operationId: getAllUsers
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: 取得成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserGetAllResponse'
+              example:
+                - id: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+                  name: "山田太郎"
+                  email: "yamada@example.com"
+                - id: "b2c3d4e5-f6a7-8901-bcde-f12345678901"
+                  name: "鈴木花子"
+                  email: "suzuki@example.com"
+        '401':
+          description: 認証失敗（トークンなし or 無効）
+
+  /user/{id}:
+    get:
+      tags:
+        - User
+      summary: ユーザーIDによるユーザー取得
+      description: 指定したIDのユーザー情報を取得する。JWT認証必須。
+      operationId: getUserById
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            nullable: true
+          description: ユーザーID（UUID）
+          example: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+      responses:
+        '200':
+          description: 取得成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUserByIdResponse'
+              example:
+                userId: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+                name: "山田太郎"
+                email: "yamada@example.com"
+        '401':
+          description: 認証失敗（トークンなし or 無効）
+        '404':
+          description: 指定したユーザーが見つからない
+
+  /belongingGroup/register:
+    post:
+      tags:
+        - BelongingGroup
+      summary: 所属グループ登録
+      description: 新しい所属グループを登録する。JWT認証必須。
+      operationId: registerBelongingGroup
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BelongingGroup'
+            example:
+              groupId: null
+              name: "初段クラス"
+      responses:
+        '200':
+          description: 登録成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BelongingGroup'
+              example:
+                groupId: "b2c3d4e5-f6a7-8901-bcde-f12345678901"
+                name: "初段クラス"
+        '401':
+          description: 認証失敗（トークンなし or 無効）
+
+  /belongingGroup/assign-group:
+    post:
+      tags:
+        - BelongingGroup
+      summary: ユーザーへのグループ割り当て
+      description: 指定したユーザーに所属グループを割り当てる。JWT認証必須。
+      operationId: assignGroup
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignGroupRequest'
+            example:
+              groupId: "b2c3d4e5-f6a7-8901-bcde-f12345678901"
+              userId: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+      responses:
+        '200':
+          description: 割り当て成功
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: "Group assigned successfully"
+        '400':
+          description: 割り当て失敗（ユーザーまたはグループが存在しない等）
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: "Error assigning group: User not found"
+        '401':
+          description: 認証失敗（トークンなし or 無効）
+
+  /record/save:
+    post:
+      tags:
+        - Record
+      summary: 射撃記録の保存
+      description: ユーザーの射撃記録（的中数・総射数）を保存する。JWT認証必須。
+      operationId: saveRecord
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecordSaveRequest'
+            example:
+              hitCount: 7
+              totalShots: 10
+              userId: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+      responses:
+        '200':
+          description: 保存成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecordSaveResponse'
+              example:
+                recordId: "c3d4e5f6-a7b8-9012-cdef-123456789012"
+                hitCount: 7
+                totalShots: 10
+        '400':
+          description: リクエスト不正
+        '401':
+          description: 認証失敗（トークンなし or 無効）
+
+  /record/user/{userId}:
+    get:
+      tags:
+        - Record
+      summary: ユーザーIDによる射撃記録一覧取得
+      description: 指定したユーザーの全射撃記録を取得する。JWT認証必須。
+      operationId: getRecordsByUserId
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ユーザーID（UUID）
+          example: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+      responses:
+        '200':
+          description: 取得成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RecordGetResponse'
+              example:
+                - recordId: "c3d4e5f6-a7b8-9012-cdef-123456789012"
+                  hitCount: 7
+                  totalShots: 10
+                - recordId: "d4e5f6a7-b8c9-0123-def0-234567890123"
+                  hitCount: 5
+                  totalShots: 8
+        '401':
+          description: 認証失敗（トークンなし or 無効）

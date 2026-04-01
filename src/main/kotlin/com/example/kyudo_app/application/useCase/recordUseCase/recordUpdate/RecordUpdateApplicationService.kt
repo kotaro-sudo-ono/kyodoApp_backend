@@ -1,7 +1,7 @@
 package com.example.kyudo_app.application.useCase.recordUseCase.recordUpdate
 
 import com.example.kyudo_app.domain.model.ArrowRecord
-import com.example.kyudo_app.domain.model.record
+import com.example.kyudo_app.domain.model.Record
 import com.example.kyudo_app.domain.service.RecordDomainService
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -13,7 +13,7 @@ class RecordUpdateApplicationService(
 
     @Transactional
     override fun updateRecord(command: RecordUpdateCommand): RecordUpdateDto {
-        val domain = record(
+        val domain = Record(
             recordId = command.recordId,
             hitCount = command.hitCount,
             totalShots = command.totalShots,

@@ -2,7 +2,7 @@ package com.example.kyudo_app.domain.model
 
 import java.time.LocalDateTime
 
-class record(
+class Record(
     val recordId: String?,
     val hitCount: Int,
     val totalShots: Int,

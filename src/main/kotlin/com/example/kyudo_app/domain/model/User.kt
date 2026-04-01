@@ -9,7 +9,7 @@ class User(
     val userRole: Int,
     val password: String,
     val gameMatches: List<GameMatch> = emptyList(),
-    val records: List<record> = emptyList(),
+    val records: List<Record> = emptyList(),
     val teamMembers: List<TeamMember> = emptyList(),
     val belongingGroup: BelongingGroup? = null
 ) {
