@@ -34,8 +34,9 @@ class RecordDomainService(
 
     @Transactional
     fun updateRecord(domain: record): record {
-        val entity = recordRepository.findByIdOrNull(domain.recordId!!)
-            ?: throw NoSuchElementException("Record not found: ${domain.recordId}")
+        val recordId = requireNotNull(domain.recordId) { "recordId is required for update" }
+        val entity = recordRepository.findByIdOrNull(recordId)
+            ?: throw NoSuchElementException("Record not found: $recordId")
         entity.hitCount = domain.hitCount
         entity.totalShots = domain.totalShots
         entity.practiceDate = domain.practiceDate
