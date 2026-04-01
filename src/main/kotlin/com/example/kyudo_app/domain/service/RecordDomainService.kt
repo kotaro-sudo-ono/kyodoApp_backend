@@ -1,13 +1,8 @@
 package com.example.kyudo_app.domain.service
 
 import com.example.kyudo_app.domain.model.MonthlySummary
-import com.example.kyudo_app.domain.model.PracticeTypeConstants
 import com.example.kyudo_app.domain.model.Record
-import com.example.kyudo_app.infrastructure.persistence.mapper.ArrowRecordMapper
-import com.example.kyudo_app.infrastructure.persistence.mapper.RecordMapper
-import com.example.kyudo_app.infrastructure.persistence.repository.RecordRepository
-import com.example.kyudo_app.infrastructure.persistence.repository.UserRepository
-import org.springframework.data.repository.findByIdOrNull
+import com.example.kyudo_app.domain.repository.RecordRepositoryPort
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDate
@@ -16,49 +11,25 @@ import java.time.format.DateTimeFormatter
 
 @Service
 class RecordDomainService(
-    private val recordRepository: RecordRepository,
-    private val userRepository: UserRepository
+    private val recordRepository: RecordRepositoryPort
 ) {
 
     @Transactional
-    fun saveRecord(domain: Record): Record {
-        val entity = RecordMapper.toEntity(domain)
-        entity.user = domain.user?.userId?.let { userRepository.findByIdOrNull(it) }
-        domain.arrows.forEach { arrow ->
-            val arrowEntity = ArrowRecordMapper.toEntity(arrow, entity)
-            entity.arrows.add(arrowEntity)
-        }
-        val saved = recordRepository.save(entity)
-        return RecordMapper.toDomain(saved)
-    }
+    fun saveRecord(domain: Record): Record = recordRepository.save(domain)
 
     @Transactional
     fun updateRecord(domain: Record): Record {
         val recordId = requireNotNull(domain.recordId) { "recordId is required for update" }
-        val entity = recordRepository.findByIdOrNull(recordId)
+        recordRepository.findById(recordId)
             ?: throw NoSuchElementException("Record not found: $recordId")
-        entity.hitCount = domain.hitCount
-        entity.totalShots = domain.totalShots
-        entity.practiceDate = domain.practiceDate
-        entity.practiceTypeId = domain.practiceTypeId
-        entity.arrows.clear()
-        domain.arrows.forEach { arrow ->
-            val arrowEntity = ArrowRecordMapper.toEntity(arrow, entity)
-            entity.arrows.add(arrowEntity)
-        }
-        val saved = recordRepository.save(entity)
-        return RecordMapper.toDomain(saved)
+        return recordRepository.update(domain)
     }
 
     @Transactional(readOnly = true)
-    fun getRecordsByUserId(userId: String): List<Record> {
-        return recordRepository.findByUser_Id(userId).map { RecordMapper.toDomain(it) }
-    }
+    fun getRecordsByUserId(userId: String): List<Record> = recordRepository.findByUserId(userId)
 
     @Transactional(readOnly = true)
-    fun getRecordsByDate(date: LocalDate): List<Record> {
-        return recordRepository.findByPracticeDate(date).map { RecordMapper.toDomain(it) }
-    }
+    fun getRecordsByDate(date: LocalDate): List<Record> = recordRepository.findByDate(date)
 
     @Transactional(readOnly = true)
     fun getMonthlySummary(userId: String, months: List<String>): List<MonthlySummary> {
@@ -67,9 +38,7 @@ class RecordDomainService(
         val start = yearMonths.minOf { it.atDay(1) }.atStartOfDay()
         val end = yearMonths.maxOf { it.atEndOfMonth() }.plusDays(1).atStartOfDay()
 
-        val records = recordRepository
-            .findByUser_IdAndPracticeDateBetween(userId, start, end)
-            .map { RecordMapper.toDomain(it) }
+        val records = recordRepository.findByUserIdAndDateBetween(userId, start, end)
 
         val grouped = records.groupBy { record ->
             record.practiceDate?.toLocalDate()?.format(formatter) ?: ""
@@ -79,11 +48,7 @@ class RecordDomainService(
             val monthRecords = grouped[month] ?: emptyList()
             val totalHit = monthRecords.sumOf { it.hitCount }
             val totalShots = monthRecords.sumOf { it.totalShots }
-            val hitRate = if (totalShots > 0) {
-                totalHit.toDouble() / totalShots
-            } else {
-                0.0
-            }
+            val hitRate = if (totalShots > 0) totalHit.toDouble() / totalShots else 0.0
             MonthlySummary(
                 month = month,
                 hitCount = totalHit,
