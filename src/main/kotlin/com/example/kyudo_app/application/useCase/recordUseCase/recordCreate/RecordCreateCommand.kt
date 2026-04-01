@@ -1,17 +1,17 @@
-package com.example.kyudo_app.application.useCase.recordUseCase
+package com.example.kyudo_app.application.useCase.recordUseCase.recordCreate
 
 import java.time.LocalDateTime
 
-data class RecordSaveParam(
+data class RecordCreateCommand(
     val hitCount: Int,
     val totalShots: Int,
     val userId: String,
     val practiceDate: LocalDateTime? = null,
     val practiceTypeId: Int? = null,
-    val arrows: List<ArrowParam> = emptyList()
+    val arrows: List<ArrowCreateParam> = emptyList()
 )
 
-data class ArrowParam(
+data class ArrowCreateParam(
     val arrowNumber: Int,
     val positionX: Double?,
     val positionY: Double?,
