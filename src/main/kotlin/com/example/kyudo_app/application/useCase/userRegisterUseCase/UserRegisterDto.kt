@@ -1,4 +1,4 @@
-package com.example.kyudo_app.application.useCase.UserRegisterUseCase
+package com.example.kyudo_app.application.useCase.userRegisterUseCase
 
 import com.example.kyudo_app.domain.model.User
 

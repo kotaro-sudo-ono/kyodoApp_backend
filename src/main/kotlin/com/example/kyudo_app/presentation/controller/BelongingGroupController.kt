@@ -3,7 +3,7 @@ package com.example.kyudo_app.presentation.controller
 import com.example.kyudo_app.application.dto.AssignGroupRequest
 import com.example.kyudo_app.domain.model.BelongingGroup
 import com.example.kyudo_app.domain.service.AssignBelongingGroupDomainService
-import com.example.kyudo_app.domain.service.BelongingGroupResisterDomainService
+import com.example.kyudo_app.domain.service.BelongingGroupRegisterDomainService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/belongingGroup")
 class BelongingGroupController(
-    private val belongingGroupResisterService: BelongingGroupResisterDomainService,
+    private val belongingGroupRegisterService: BelongingGroupRegisterDomainService,
     private val assignBelongingGroupService: AssignBelongingGroupDomainService
 ) {
 
     @PostMapping("/register")
     fun registerBelongingGroup(@RequestBody belongingGroup: BelongingGroup): ResponseEntity<BelongingGroup> {
-        val registered = belongingGroupResisterService.registerBelongingGroup(belongingGroup)
+        val registered = belongingGroupRegisterService.registerBelongingGroup(belongingGroup)
         return ResponseEntity.ok(registered)
     }
 

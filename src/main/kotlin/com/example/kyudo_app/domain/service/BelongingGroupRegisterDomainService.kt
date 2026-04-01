@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-class BelongingGroupResisterDomainService @Autowired constructor(
+class BelongingGroupRegisterDomainService @Autowired constructor(
     val belongingGroupRepository: BelongingGroupRepository
 ) {
     @Transactional

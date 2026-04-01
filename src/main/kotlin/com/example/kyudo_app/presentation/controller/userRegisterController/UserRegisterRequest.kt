@@ -1,6 +1,6 @@
 package com.example.kyudo_app.presentation.controller.userRegisterController
 
-import com.example.kyudo_app.application.useCase.UserRegisterUseCase.UserRegisterParam
+import com.example.kyudo_app.application.useCase.userRegisterUseCase.UserRegisterParam
 
 data class UserRegisterRequest(
     val name: String,
