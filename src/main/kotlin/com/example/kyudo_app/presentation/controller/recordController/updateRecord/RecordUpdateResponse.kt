@@ -19,7 +19,7 @@ data class RecordUpdateResponse(
                 totalShots = dto.totalShots,
                 practiceDate = dto.practiceDate,
                 practiceTypeId = dto.practiceTypeId,
-                arrows = dto.arrows.map { ArrowUpdateResponseItem(it.arrowId, it.arrowNumber, it.positionX, it.positionY, it.isHit) }
+                arrows = dto.arrows.map { ArrowUpdateResponseItem(it.arrowId, it.arrowNumber, it.standNumber, it.positionX, it.positionY, it.isHit) }
             )
         }
     }
@@ -28,6 +28,7 @@ data class RecordUpdateResponse(
 data class ArrowUpdateResponseItem(
     val arrowId: String?,
     val arrowNumber: Int,
+    val standNumber: Int,
     val positionX: Double?,
     val positionY: Double?,
     val isHit: Boolean
