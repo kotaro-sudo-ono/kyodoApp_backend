@@ -13,7 +13,7 @@ data class RecordSaveDto(
 ) {
     companion object {
         fun from(domain: record): RecordSaveDto {
-            val hoge = RecordSaveDto(
+            return RecordSaveDto(
                 recordId = domain.recordId,
                 hitCount = domain.hitCount,
                 totalShots = domain.totalShots,
@@ -21,7 +21,6 @@ data class RecordSaveDto(
                 practiceTypeId = domain.practiceTypeId,
                 arrows = domain.arrows.map { ArrowDto.from(it) }
             )
-            return hoge;
         }
     }
 }

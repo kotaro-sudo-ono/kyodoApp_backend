@@ -39,8 +39,7 @@ class RecordApplicationService(
             }
         )
         val saved = recordDomainService.saveRecord(domain)
-        val hoge = RecordSaveDto.from(saved)
-        return hoge;
+        return RecordSaveDto.from(saved)
     }
 
     @Transactional(readOnly = true)

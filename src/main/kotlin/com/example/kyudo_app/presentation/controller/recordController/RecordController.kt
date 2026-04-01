@@ -22,8 +22,7 @@ class RecordController(
     fun saveRecord(@RequestBody request: RecordSaveRequest): ResponseEntity<RecordSaveResponse> {
         val param = request.toParam()
         val dto = recordUseCase.saveRecord(param)
-        val hoge = dto
-        return ResponseEntity.ok(RecordSaveResponse.from(hoge))
+        return ResponseEntity.ok(RecordSaveResponse.from(dto))
     }
     @GetMapping("/user/{userId}")
     fun getRecordsByUserId(@PathVariable userId: String): ResponseEntity<List<RecordGetResponse>> {
