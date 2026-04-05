@@ -15,7 +15,8 @@ open class CorsConfig {
 
         config.allowedOrigins = listOf(
             "http://localhost:5173",  // IPv4
-            "http://[::1]:5173"       // IPv6
+            "http://[::1]:5173",      // IPv6
+            "http://13.113.236.120"   // フロントエンドEC2
         ) // フロントのオリジン
         config.allowedMethods = listOf("GET", "POST", "PUT", "DELETE", "OPTIONS")
         config.allowedHeaders = listOf("*")
